@@ -1,7 +1,8 @@
 #!/bin/usr/env python3
 """ LIFOCache module """
-BaseCaching = __import__('base_caching').BaseCaching
 from collections import OrderedDict
+BaseCaching = __import__('base_caching').BaseCaching
+
 
 class LIFOCache(BaseCaching):
     """ LIFO Cache class Inheriting BaseCaching """
@@ -15,9 +16,9 @@ class LIFOCache(BaseCaching):
         """ Update the cache """
         if key is None and item is None:
             return
-        
+
         if key not in self.cache_data:
-            if len(self.cache_data)+ 1 > BaseCaching.MAX_ITEMS:
+            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
                 last_key, last_item = self.cache_data.popitem(True)
                 print(f'DISCARD: {last_key}')
             self.cache_data[key] = item
