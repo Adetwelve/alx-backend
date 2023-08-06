@@ -41,11 +41,13 @@ def get_locale() -> str:
 
 
 def get_user(user_id):
+    """ get user id """
     return users.get(user_id)
 
 
 @app.before_request
 def before_request():
+    """ set user id as global """
     user_id = request.args.get("login_as")
     if user_id:
         user_id = int(user_id)
