@@ -23,9 +23,9 @@ babel = Babel(app)
 def get_locale() -> str:
     """check the 'lang' parameter in the url
     """
-    user_locale = request.args.get('lang')
-    if user_locale:
-        return user_locale
+    locale = request.args.get('lang')
+    if locale in app.config["LANGUAGES"]:
+        return locale
     """ if no 'lang' parameter use default Flask-Babel
         local selector
     """
@@ -40,4 +40,4 @@ def get_index() -> str:
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
